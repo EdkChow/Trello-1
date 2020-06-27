@@ -24,10 +24,10 @@ const Sticky = (props) => {
   })
 
   return (
-    <span className='sticky' ref={drag} style={{opacity: isDragging ? '0.5' : '1' }} >
-    <p>{props.text}</p>
-  </span>
-  )
+    <div className='sticky'   ref={drag} style={{opacity: isDragging ? '0.5' : '1', border: "solid", height: '150px', width: '200px' }}>
+        <p>{props.text}</p>
+  </div>
+  ) 
 }
 
 export default Sticky;

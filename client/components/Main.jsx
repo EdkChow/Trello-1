@@ -4,6 +4,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import Column from "./Column.jsx";
 import Sticky from './Sticky.jsx';
 import CreateSticky from './CreateSticky.jsx';
+import Storage from './storage.jsx';
 
 class Main extends Component {
 
@@ -15,27 +16,53 @@ class Main extends Component {
         {column:'In The Works', text: 'fdsf'},
         {column:'Revising', text: 'fdf'},
         {column:'Complete', text: 'yew4g5err'},
-        {column:'Complete', text: 'yew4g5err'},
-        {column:'Complete', text: 'yew4g5err'},
-        {column:'Complete', text: 'yew4g5err'},
+        {column:'Complete', text: 'yew4g5er'},
+        {column:'Complete', text: 'yew4g5r'},
+        {column:'Complete', text: 'yew4gerr'},
       ]
+      // number: {}
     }
     this.setColumn = this.setColumn.bind(this)
     this.reset = this.reset.bind(this)
   }
-  // componentDidMount() {
-  //   fetch('/api/get')
-  //       .then(res => {
-  //         return res.json();
-  //       })
-  //       .then(data => {
+
+  // componentDidMount(){
+  //   console.log(this.props.username)
+  // }
+
+  
+  // componentDidUpdate() {
+   
+  //   fetch(`./${this.props.username}`,{
+  //     method: 'GET', 
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //     },
+  //     }).then((res) => {
+  //       // console.log(data);
+  //       return res.json()
+  //     }).then((data)=> {
+  //       console.log('this is the res data:  *****', data.data)
+  //       console.log(this.state.data, data.data )
+  //       // if (this.state.data !== data.data){
+  //       //   this.setState({
+  //       //     data: data.data
+  //       //     // number: data
+  //       //   })
+  //       // }
+  //       // return this.setState({ 
+  //       //   data: [{column: data.column, text: data.text}]
+  //       // })
+  //     })
+
+  //       // .then(res => {
+  //       //   return res.json();
+  //       // })
+  //       // .then(data => {
   //         // { column: 'todo', text: 'yerrrr'}
-  //         console.log(`data ${data}`);
-  //         return this.setState({ 
-  //           data: [{column: data.column, text: data.text}]
-  //         })
-  //       })
-  //       .catch(err => console.log(`fetch error ${err}`));
+  //       //   console.log(`data ${data}`);
+  //       // })
+  //       // .catch(err => console.log(`fetch error ${err}`));
   // }
 
   setColumn(text, column) {
@@ -65,16 +92,18 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.data);
-    
+   console.log(this.state.data,'state!')
+   
     return (
       //where the board will render with all the sticky notes
       <div className='columns-container'>
         <div className='header'>
-          <h1>SCheetah</h1>
+          <img id='flip' src='../../assets/image/cheetah.svg' alt='logo'></img>
+          <h1>Cheetah</h1>
+          <img src='../../assets/image/cheetah.svg' alt='logo'></img>
         </div>
         {/* <h1>This SHOULD SAY: {this.props.info.data.text}</h1> */}
-        <div className='BoardBody'> 
+        <div className='boardBody'> 
           <Column column='To Do' setColumn={this.setColumn}>
             {this.state.data.filter((el) => el.column === 'To Do').map((el) => (
               <Sticky text={el.text} />
@@ -95,10 +124,16 @@ class Main extends Component {
               <Sticky text={el.text} />
               ))}
           </Column>
+
         </div>
-          
         <div className='Footer'>
+          <Storage column='Storage' setColumn={this.setColumn}>
+            {this.state.data.filter((el) => el.column === 'Storage').map((el) => (
+              <Sticky text={el.text} />
+              ))}
+          </Storage>
           <CreateSticky />
+          {/* {console.log(this.props.username)} */}
           <button>Logout</button>
         </div>
       </div>
