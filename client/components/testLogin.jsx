@@ -48,6 +48,7 @@ class Login extends Component {
                     </div>
                     <button type="submit">Log In</button>    
                 </form>
+                    <Main username={this.state.username}/>
             </div>
         )
     }
